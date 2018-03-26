@@ -21,7 +21,8 @@ angular.module('ngCsv.directives').
         addByteOrderMarker: "@addBom",
         ngClick: '&',
         charset: '@charset',
-        label: '&csvLabel'
+        label: '&csvLabel',
+        linkTarget: '@linkTarget'
       },
       controller: [
         '$scope',
@@ -103,7 +104,7 @@ angular.module('ngCsv.directives').
             var downloadLink = angular.element(downloadContainer.children()[0]);
             downloadLink.attr('href', window.URL.createObjectURL(blob));
             downloadLink.attr('download', scope.getFilename());
-            downloadLink.attr('target', '_blank');
+            downloadLink.attr('target', scope.linkTarget || '_blank');
 
             $document.find('body').append(downloadContainer);
             $timeout(function () {
